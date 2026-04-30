@@ -1,0 +1,42 @@
+\section{Autonomy and Agency as Design Dimensions}
+
+Two dimensions jointly characterise the role and reach of an agentic system. \emph{Autonomy} determines how much human involvement a workflow requires; \emph{Agency} determines what the system can perceive and affect. The two are coupled: at higher autonomy, human error correction is less available, so reliable operation requires constraining agency accordingly~\cite{Feng2025Levels,Mitchell2025}. Compliance requirements reinforce this coupling---the EU~AI~Act mandates human oversight for high-risk applications; the GDPR constrains data access and grants rights to explanation over automated decisions~\cite{eu_ai_act_2024,gdpr_2016}---defining a viability envelope within which deployments must remain. Each dimension is operationalised into five levels; Table~\ref{tab:autonomy} covers autonomy and Table~\ref{tab:agency} covers agency.
+
+\begin{table}[ht]
+    \centering
+    \caption{Five levels of autonomy, adapted from~\cite{Feng2025Levels}, characterised by the role the human takes (\emph{Stance}) and how control is distributed between human and agent (\emph{Interaction Design}).}\label{tab:autonomy}
+    \footnotesize
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{ll>{\raggedright\arraybackslash}p{7.0cm}}
+        \toprule
+        \textbf{Level} & \textbf{Stance} & \textbf{Interaction Design} \\
+        \midrule
+        L1 & Operator     & Human commands; agent executes a specific sub-task. \\
+        L2 & Collaborator & Shared workspace; human and agent iterate back-and-forth. \\
+        L3 & Consultant   & Agent leads planning; pauses to confirm direction with the human. \\
+        L4 & Approver     & Agent executes; pauses for explicit approval before consequential actions. \\
+        L5 & Observer     & Agent operates fully autonomously; human monitors and can intervene. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+A key distinction for the agency dimension is that reversibility is a property of the \emph{action itself}, not of who authorised it: whether a human must approve is determined by the autonomy design; whether the action can be undone is determined by the tool.
+
+\begin{table}[ht]
+    \centering
+    \caption{Five levels of agency, introduced in this work, characterised by operational reach (\emph{Agent Type}) and what the system can perceive and affect (\emph{Agency Scope}). Levels are cumulative.}\label{tab:agency}
+    \footnotesize
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{ll>{\raggedright\arraybackslash}p{5.8cm}}
+        \toprule
+        \textbf{Level} & \textbf{Agent Type} & \textbf{Agency Scope} \\
+        \midrule
+        L1 & Model-only             & Reason, draft, and summarise from provided context; no tool use. \\
+        L2 & Internal agent         & Safe local tools; no access to external systems. \\
+        L3 & Read-only agent        & Read-only access to external sources; cannot write or modify records. \\
+        L4 & Pragmatic (reversible) & External writes with low rollback cost: drafts, pending records. \\
+        L5 & Pragmatic (commit)     & External writes with costly undo: final submissions, authoritative records. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
