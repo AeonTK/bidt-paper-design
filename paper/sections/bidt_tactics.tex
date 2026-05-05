@@ -1,6 +1,6 @@
 \section{Architectural Tactics}
 
-The tactics address how to move a system within the design space while preserving or improving its accountability profile. Table~\ref{tab:tactics} summarises all six.
+The tactics address how to adjust a deployment's position in the design space by targeting its autonomy, agency, or both. They operate at three layers---workflow, tool, and action---and can raise or lower the targeted dimension depending on the deployment goal. Table~\ref{tab:tactics} summarises all six.
 
 \begin{table}[t]
     \centering
@@ -23,9 +23,8 @@ The tactics address how to move a system within the design space while preservin
 \end{table}
 
 \paragraph{Autonomy tactics.}
-\textbf{Checkpoints}~(T1) insert fixed, unconditional pauses at predetermined workflow steps, making review locations auditable by design. \textbf{Escalation}~(T2) is a dynamic, agent-initiated pause that fires when the agent determines it cannot proceed autonomously---preserving high autonomy in the common case while restoring human involvement at the edge of the agent's reliable operating boundary. \textbf{Multi-agent delegation}~(T3) raises effective autonomy by replacing a human sub-task handler with a specialised sub-agent; errors introduced by a sub-agent are harder to attribute than errors in a direct human decision, making audit trail preservation across the delegation boundary essential.
+\textbf{Checkpoints}~(T1) insert fixed, unconditional pauses at predetermined workflow steps, making review locations auditable by design. \textbf{Escalation}~(T2) is a dynamic, agent-initiated pause that fires when the agent determines it cannot proceed autonomously---preserving high autonomy in the common case while restoring human involvement at the edge of the agent's reliable operating boundary. \textbf{Multi-agent delegation}~(T3) raises effective autonomy by replacing a human sub-task handler with a specialised sub-agent; the delegation boundary introduces a gap in the audit trail that requires explicit design attention.
 
 \paragraph{Agency tactics.}
-\textbf{Tool provisioning}~(T4) adjusts which tools the agent can access at runtime. \textbf{Tool fencing}~(T5) constrains a tool's operational envelope without removing it, implemented in the tool's own validation layer independently of model behaviour. \textbf{Write staging}~(T6) interposes a draft layer before an authoritative commit, demoting an irreversible L5 write to a reversible L4 action---converting an accountability liability into a recoverable one.
+\textbf{Tool provisioning}~(T4) adjusts which tools the agent can access at runtime. \textbf{Tool fencing}~(T5) constrains a tool's operational envelope without removing it, implemented in the tool's own validation layer independently of model behaviour. \textbf{Write staging}~(T6) interposes a draft layer before an authoritative commit, demoting an irreversible L5 write to a reversible L4 action---converting a permanent write into one that can be reviewed and corrected before it takes effect.
 
-Because the dimensions are coupled, tactics from both axes can be combined~\cite{Schmitz2025}: reducing agency through fencing or write staging lowers accountability exposure and may permit higher autonomy without exceeding compliance bounds; when high agency is required, autonomy tactics that introduce human oversight at consequential steps can bring the configuration back within bounds.

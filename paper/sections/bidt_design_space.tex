@@ -1,42 +1,14 @@
 \section{Autonomy and Agency as Design Dimensions}
 
-Two dimensions jointly characterise the role and reach of an agentic system. \emph{Autonomy} determines how much human involvement a workflow requires; \emph{Agency} determines what the system can perceive and affect. The two are coupled: at higher autonomy, human error correction is less available, so reliable operation requires constraining agency accordingly~\cite{Feng2025Levels,Mitchell2025}. Compliance requirements reinforce this coupling---the EU~AI~Act mandates human oversight for high-risk applications; the GDPR constrains data access and grants rights to explanation over automated decisions~\cite{eu_ai_act_2024,gdpr_2016}---defining a viability envelope within which deployments must remain. Each dimension is operationalised into five levels; Table~\ref{tab:autonomy} covers autonomy and Table~\ref{tab:agency} covers agency.
+The coupling has both practical and regulatory roots. Practically, an agent operating at higher autonomy has less opportunity for human error correction, so reliable task completion requires constraining agency to what the system can handle independently~\cite{Feng2025Levels,Mitchell2025}. Compliance requirements reinforce this further: the EU~AI~Act mandates human oversight for high-risk applications; the GDPR constrains data access and grants rights to explanation over automated decisions~\cite{eu_ai_act_2024,gdpr_2016}, defining a viability envelope within which deployments must remain. Each dimension is operationalised into five levels; Figure~\ref{fig:design_space} shows the resulting design space.
 
-\begin{table}[ht]
+Following Feng et al.~\cite{Feng2025Levels}, we distinguish five autonomy levels that describe the \emph{interaction design}: how control, review, and responsibility are allocated between human and agent. At \emph{L1~(Operator)}, the human commands and the agent executes a specific sub-task; at \emph{L2~(Collaborator)}, both share a workspace and iterate. At \emph{L3~(Consultant)}, the agent leads planning but pauses to confirm direction; at \emph{L4~(Approver)}, it executes and pauses only for explicit approval before consequential actions. At \emph{L5~(Observer)}, the agent operates fully autonomously while the human monitors and can intervene.
+
+The five agency levels, introduced in this work, provide a cumulative scale of increasing operational reach. \emph{L1~(Model-only)} covers reasoning and drafting from provided context with no tool use; \emph{L2~(Internal agent)} adds safe local tools with no external access; \emph{L3~(Read-only agent)} permits read-only access to external sources. \emph{L4~(Pragmatic, reversible)} allows external writes with low rollback cost; \emph{L5~(Pragmatic, commit)} covers writes with costly undo---final submissions and authoritative records.
+
+\begin{figure}[t]
     \centering
-    \caption{Five levels of autonomy, adapted from~\cite{Feng2025Levels}, characterised by the role the human takes (\emph{Stance}) and how control is distributed between human and agent (\emph{Interaction Design}).}\label{tab:autonomy}
-    \footnotesize
-    \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{ll>{\raggedright\arraybackslash}p{7.0cm}}
-        \toprule
-        \textbf{Level} & \textbf{Stance} & \textbf{Interaction Design} \\
-        \midrule
-        L1 & Operator     & Human commands; agent executes a specific sub-task. \\
-        L2 & Collaborator & Shared workspace; human and agent iterate back-and-forth. \\
-        L3 & Consultant   & Agent leads planning; pauses to confirm direction with the human. \\
-        L4 & Approver     & Agent executes; pauses for explicit approval before consequential actions. \\
-        L5 & Observer     & Agent operates fully autonomously; human monitors and can intervene. \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-A key distinction for the agency dimension is that reversibility is a property of the \emph{action itself}, not of who authorised it: whether a human must approve is determined by the autonomy design; whether the action can be undone is determined by the tool.
-
-\begin{table}[ht]
-    \centering
-    \caption{Five levels of agency, introduced in this work, characterised by operational reach (\emph{Agent Type}) and what the system can perceive and affect (\emph{Agency Scope}). Levels are cumulative.}\label{tab:agency}
-    \footnotesize
-    \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{ll>{\raggedright\arraybackslash}p{5.8cm}}
-        \toprule
-        \textbf{Level} & \textbf{Agent Type} & \textbf{Agency Scope} \\
-        \midrule
-        L1 & Model-only             & Reason, draft, and summarise from provided context; no tool use. \\
-        L2 & Internal agent         & Safe local tools; no access to external systems. \\
-        L3 & Read-only agent        & Read-only access to external sources; cannot write or modify records. \\
-        L4 & Pragmatic (reversible) & External writes with low rollback cost: drafts, pending records. \\
-        L5 & Pragmatic (commit)     & External writes with costly undo: final submissions, authoritative records. \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \includegraphics[width=0.75\textwidth]{fig_design_space}
+    \caption{The autonomy--agency design space. \emph{Autonomy} (horizontal) describes how much human involvement a workflow requires; \emph{agency} (vertical) describes what the system can perceive and affect. Iso-viability curves connect configurations of equal operational viability; their shape reflects the coupling: as autonomy increases, the viable agency range narrows. No formal relationship between the dimensions is assumed. Points A--D mark four example configurations: (A)~Baseline---low agency and low autonomy; fully human-driven execution with narrow reach; (B)~Supertool---high agency, low autonomy; the human orchestrates each step while the agent executes consequential actions; (C)~Autonomous Monitor---high autonomy, read-only agency; the agent operates independently but is confined to external reads, avoiding consequential writes; (D)~Transformative Agent---high agency and high autonomy; maximum leverage, but hardest to deploy due to compliance requirements and the practical difficulty of reliable autonomous operation at broad reach. Point~E marks the funding matching tool, the worked example of Section~\ref{sec:application}.}\label{fig:design_space}
+\end{figure}
 
