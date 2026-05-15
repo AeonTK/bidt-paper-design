@@ -1,0 +1,3 @@
+Deploying agentic AI in regulated contexts requires navigating two coupled design dimensions: autonomy—how much human involvement a workflow requires—and agency—what the system can perceive and affect. At higher autonomy, human error correction is less available, so reliable operation requires constraining agency; compliance reinforces this coupling.
+
+We introduce a two-dimensional design space organising both dimensions into five operational levels, and propose six architectural tactics—checkpoints, escalation, multi-agent delegation, tool provisioning, tool fencing, and write staging—for navigating it. The tactics are demonstrated on an automated funding program matching tool for citizen-driven innovation.
